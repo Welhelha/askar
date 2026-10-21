@@ -184,7 +184,7 @@ impl<'de> Visitor<'de> for JwkMapVisitor<'de> {
                     }
                 }
                 "key_ops" => key_ops = Some(access.next_value()?),
-                _ => (),
+                _ => { access.next_value::<serde::de::IgnoredAny>()?; }
             }
         }
 
