@@ -165,11 +165,11 @@ jobs:
               "${{ matrix.manylinux_image }}" bash -c '
                 curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain ${{ env.RUST_VERSION }}
                 export PATH="$HOME/.cargo/bin:$PATH"
-                cargo build --lib --release --target ${{ matrix.target }}'
+                cargo build --lib --release --features mldsa --target ${{ matrix.target }}'
           elif [ "${{ matrix.architecture }}" == "darwin-universal" ]; then
             ./build-universal.sh
           else
-            cargo build --lib --release --target ${{ matrix.target }}
+            cargo build --lib --release --features mldsa --target ${{ matrix.target }}
           fi
 
       - name: Upload artifacts
